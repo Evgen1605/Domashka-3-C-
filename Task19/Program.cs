@@ -6,58 +6,58 @@
 
 Console.Clear();
 Console.Write("Введите пятизначное число: ");
-// int num = int.Parse(Console.ReadLine()!); // num = 12345
+int num = int.Parse(Console.ReadLine()!); // num = 12345
 // int a1 = num / 10000; // a1 = 1 т.к мы отбрасываем последние 4 цифры
-// num -= a1 * 10000; // в num записываем 2345 <=> num = num % 1000 (2345)
-// int a2 = num / 1000; // уже от 2345 отбрасываем ри последнии цифры и a2 = 2
+// num = num - (a1 * 10000); // в num записываем 2345 <=> num = num % 10000 (2345)
+// int a2 = num / 1000; // уже от 2345 отбрасываем три последнии цифры и a2 = 2
 // num -= a2 * 1000; // в num записываем 345
-// int a3 = num / 100; // c = 3
-// num -= a3 * 100; //  num = 45
-// int a4 = num / 10; // d = 4
-// int a5 = num % 10; // e = 5
+// int a3 = num / 100; //  а3 = 3
+// num -= a3 * 100; // в num записывается 45 
+// int a4 = num / 10; // а4 = 4  <=> 45 / 10 = 4 
+// int a5 = num % 10; // а5 = 5 <=> 45 % 10 = 5
 
-// if (a1 == a5 && a2 == a4)
+// if (a1 == a5 && a2 == a4)// делаем проверку, если первая цифра (а1) равна пятой цифре (а5) и вторая цифра (а2) равна четвёртой цифре (а4)
 // {
-//   Console.Write($"Да");
+//   Console.Write($"Да");// то в консоль выводим
 // }
 // else
 // {
-//   Console.Write($"Нет");
+//   Console.Write($"Нет");// иначе выводим в консоль
 // }
 
 // решаем через массив
-string num = Console.ReadLine()!;
-int palindr = num.Length;
+// string num = Console.ReadLine()!;
+// int palindr = num.Length;// в переменную записывает длину массивма
 
-if (palindr == 5)
-{
-  if (num[0] == num[4] && num[1] == num[3] )
-  {
-    Console.Write("Да");
-  }else
-  {
-    Console.Write("Нет");
-  }
-}else
-{
-  Console.Write("Неверное число");
-}
+// if (palindr == 5)// делает проверку, если длина массива равна 5 знаков
+// {
+//   if (num[0] == num[4] && num[1] == num[3] )//тогда делается ещё одна проверка где сравниваются индексы массива если проверка возращает true 
+//   {
+//     Console.Write("Да");// то выводим 
+//   }else
+//   {
+//     Console.Write("Нет");// выводим если проверка возвращает false
+//   }
+// }else
+// {
+//   Console.Write("Неверное число");// если в 32 строчке проверка не проходит, то выводим
+// }
 
 
 // универсальное решение для всех чисел
-// int Revers(int num){
-//   int revers = 0;
-//   while (num > 0)
-//   {
-//     revers = revers * 10 + num % 10;
-//     num /= 10;
-//   }
-//   return revers;
-// }
-// if (num == Revers(num))
-// {
-//   Console.Write($"Да");
-// }else
-// {
-//   Console.Write($"Нет");
-// }
+int Revers(int num){// создаём функцию 
+  int revers = 0;
+  while (num > 0)// запускаем цикл где num = 12345 > 0
+  {
+    revers = revers * 10 + num % 10;// revers = 0 * 10 + num % 10(12345%10 = 1234) постепенно проходя по циклу, второй шаг будет revers = 5 * 10 + num % 10(1234%10 = 123) и т.д 
+    num /= 10;// сокращаем num, num / 10 = (1234)
+  }
+  return revers;
+}
+if (num == Revers(num))// сравниваем 12345 = 54321
+{
+  Console.Write($"Да");
+}else
+{
+  Console.Write($"Нет");
+}
